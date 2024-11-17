@@ -1,225 +1,212 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>John Sylvester - Solution Architect</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
-    <style>
-      /* Global Styles */
-      body {
-        font-family: 'Roboto', sans-serif;
-        margin: 0;
-        padding: 0;
-        background-color: #f9f9f9;
-        color: #333;
-        line-height: 1.6;
-      }
-      a {
-        color: #007bff;
-        text-decoration: none;
-      }
-      a:hover {
-        text-decoration: underline;
-      }
-      h1, h2, h3 {
-        margin: 0;
-      }
-      ul {
-        padding: 0;
-        list-style: none;
-      }
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>John Sylvester - Solution Architect</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Roboto:wght@300;700&display=swap">
+  <style>
+    /* Global Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Open Sans', sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background: #f4f7f9;
+    }
+    h1, h2, h3 {
+      margin-bottom: 10px;
+      color: #2c3e50;
+    }
+    p {
+      margin-bottom: 15px;
+    }
+    a {
+      color: #0077cc;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    a:hover {
+      color: #005fa3;
+    }
 
-      /* Header Section */
-      .header {
-        background: linear-gradient(135deg, #007bff, #00d4ff);
-        color: white;
-        padding: 50px 20px;
-        text-align: center;
-      }
-      .header img {
-        border-radius: 50%;
-        width: 150px;
-        height: 150px;
-        margin-bottom: 15px;
-        border: 5px solid white;
-      }
-      .header h1 {
-        font-size: 2.5em;
-        margin: 10px 0;
-      }
-      .header h2 {
-        font-size: 1.2em;
-        font-weight: 400;
-      }
-      .header .btn {
-        display: inline-block;
-        margin-top: 20px;
-        padding: 10px 20px;
-        background: white;
-        color: #007bff;
-        border: none;
-        border-radius: 5px;
-        text-transform: uppercase;
-        font-weight: bold;
-        transition: background 0.3s;
-      }
-      .header .btn:hover {
-        background: #007bff;
-        color: white;
-      }
+    /* Header Section */
+    .header {
+      text-align: center;
+      background: linear-gradient(135deg, #4c9aff, #005fa3);
+      color: white;
+      padding: 60px 20px;
+    }
+    .header img {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      margin-bottom: 20px;
+      border: 4px solid white;
+    }
+    .header h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+    }
+    .header h2 {
+      font-size: 1.2rem;
+      font-weight: 400;
+      margin-bottom: 20px;
+    }
+    .header .btn {
+      display: inline-block;
+      background: white;
+      color: #005fa3;
+      padding: 12px 25px;
+      font-weight: bold;
+      border-radius: 25px;
+      text-transform: uppercase;
+      margin-top: 15px;
+      transition: background 0.3s ease;
+    }
+    .header .btn:hover {
+      background: #f1f1f1;
+    }
 
-      /* Main Content */
-      .container {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 20px;
-      }
+    /* Main Content */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+    .section-title {
+      margin-bottom: 30px;
+      font-size: 1.8rem;
+      text-align: center;
+      color: #2c3e50;
+    }
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .column {
+      flex: 1;
+      min-width: 300px;
+    }
+    .card {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      transition: transform 0.3s ease;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+    }
+    .card h3 {
+      margin-bottom: 15px;
+      color: #005fa3;
+    }
+
+    /* Skills Section */
+    .progress-bar {
+      background: #e0e0e0;
+      border-radius: 5px;
+      overflow: hidden;
+      margin-bottom: 15px;
+    }
+    .progress-bar span {
+      display: block;
+      height: 20px;
+      background: #005fa3;
+      color: white;
+      text-align: center;
+      line-height: 20px;
+      width: 0;
+      transition: width 0.5s ease;
+    }
+
+    /* Footer Section */
+    .footer {
+      text-align: center;
+      padding: 20px;
+      background: #2c3e50;
+      color: white;
+    }
+    .footer a {
+      color: #4c9aff;
+    }
+
+    /* Media Queries */
+    @media (max-width: 768px) {
       .row {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 20px;
+        flex-direction: column;
       }
-      .column {
-        flex: 1;
-        min-width: 300px;
-        box-sizing: border-box;
-      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <img src="John_Mar2022_less.jpg" alt="John Sylvester">
+    <h1>John Sylvester</h1>
+    <h2>Solution Architect | Cloud & IBM Specialist</h2>
+    <a href="JohnSylvester_2024.pdf" target="_blank" class="btn">Download Profile</a>
+  </header>
 
-      /* Card Styles */
-      .card {
-        background: white;
-        border-radius: 8px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        padding: 20px;
-        margin-bottom: 20px;
-      }
-      .card h3 {
-        margin-bottom: 15px;
-        border-bottom: 2px solid #007bff;
-        padding-bottom: 10px;
-      }
-
-      /* Progress Bars */
-      .progress-container {
-        margin: 10px 0;
-      }
-      .progress-bar {
-        background: #e0e0e0;
-        border-radius: 8px;
-        position: relative;
-        height: 20px;
-        overflow: hidden;
-      }
-      .progress-bar span {
-        display: block;
-        height: 100%;
-        background: #007bff;
-        color: white;
-        text-align: center;
-        line-height: 20px;
-        font-size: 14px;
-        width: 0;
-        transition: width 0.5s ease;
-      }
-
-      /* Footer Section */
-      .footer {
-        text-align: center;
-        padding: 20px;
-        background: #333;
-        color: white;
-        margin-top: 20px;
-      }
-      .footer a {
-        color: #00d4ff;
-      }
-
-      /* Media Queries */
-      @media (max-width: 768px) {
-        .header h1 {
-          font-size: 2em;
-        }
-        .header h2 {
-          font-size: 1em;
-        }
-        .row {
-          flex-direction: column;
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <!-- Header -->
-    <header class="header">
-      <img src="John_Mar2022_less.jpg" alt="John Sylvester">
-      <h1>John Sylvester</h1>
-      <h2>Solution Architect | Cloud & IBM Technology Specialist</h2>
-      <a href="JohnSylvester_2024.pdf" target="_blank" class="btn">Download Profile</a>
-    </header>
-
-    <!-- Main Content -->
-    <div class="container">
-      <div class="row">
-        <!-- Left Column -->
-        <div class="column">
-          <div class="card">
-            <h3>Contact Information</h3>
-            <p><i class="fas fa-map-marker-alt"></i> Chennai, India</p>
-            <p><i class="fas fa-envelope"></i> <a href="mailto:jajohnsylvester@gmail.com">jajohnsylvester@gmail.com</a></p>
-            <p><i class="fas fa-phone"></i> +91 8668056974</p>
-          </div>
-          <div class="card">
-            <h3>Skills</h3>
-            <div class="progress-container">
-              <p>IBM ACE, MQ, Datapower</p>
-              <div class="progress-bar"><span style="width: 90%;">90%</span></div>
-            </div>
-            <div class="progress-container">
-              <p>Azure, AWS, GCP</p>
-              <div class="progress-bar"><span style="width: 80%;">80%</span></div>
-            </div>
-            <div class="progress-container">
-              <p>RedHat OpenShift</p>
-              <div class="progress-bar"><span style="width: 65%;">65%</span></div>
-            </div>
-          </div>
+  <!-- Main Content -->
+  <div class="container">
+    <h2 class="section-title">About Me</h2>
+    <div class="row">
+      <div class="column">
+        <div class="card">
+          <h3>Professional Summary</h3>
+          <p>An experienced Solution Architect specializing in IBM technologies and cloud platforms. Adept at building scalable, efficient systems for enterprises, with a focus on client satisfaction and innovative solutions.</p>
         </div>
-
-        <!-- Right Column -->
-        <div class="column">
-          <div class="card">
-            <h3>Professional Summary</h3>
-            <p>Experienced Solution Architect with over 20 years in IBM technologies and cloud solutions. Expertise in designing and delivering scalable architectures for enterprises, focusing on IBM MQ, ACE, and Datapower. Certified in Azure, AWS, and GCP.</p>
-          </div>
-          <div class="card">
-            <h3>Work Experience</h3>
-            <h4>Solution Architect | TCS</h4>
-            <p>July 2022 - Present</p>
-            <p>Designing enterprise-grade architectures for retail pharmacy clients. Collaborating on cloud migration projects using IBM MQ, Spring Boot, and Oracle.</p>
-            <h4>Senior Architect | Cognizant</h4>
-            <p>September 2014 - June 2022</p>
-            <p>Led DevOps initiatives and architectural solutions for healthcare clients, focusing on automation and scalability.</p>
-          </div>
+      </div>
+      <div class="column">
+        <div class="card">
+          <h3>Contact Information</h3>
+          <p><strong>Location:</strong> Chennai, India</p>
+          <p><strong>Email:</strong> <a href="mailto:jajohnsylvester@gmail.com">jajohnsylvester@gmail.com</a></p>
+          <p><strong>Phone:</strong> +91 8668056974</p>
         </div>
       </div>
     </div>
 
-    <!-- Footer -->
-    <footer class="footer">
-      <p>&copy; 2024 John Sylvester | <a href="https://www.linkedin.com/in/johnsylvesteribm/" target="_blank">LinkedIn</a></p>
-    </footer>
+    <h2 class="section-title">Skills</h2>
+    <div class="row">
+      <div class="column">
+        <div class="card">
+          <h3>IBM Technologies</h3>
+          <p>IBM ACE, MQ, Datapower</p>
+          <div class="progress-bar"><span style="width: 90%;">90%</span></div>
+        </div>
+      </div>
+      <div class="column">
+        <div class="card">
+          <h3>Cloud Platforms</h3>
+          <p>Azure, AWS, GCP</p>
+          <div class="progress-bar"><span style="width: 80%;">80%</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-    <script>
-      // Animate progress bars
-      document.addEventListener('DOMContentLoaded', () => {
-        const bars = document.querySelectorAll('.progress-bar span');
-        bars.forEach(bar => {
-          const width = bar.style.width;
-          setTimeout(() => (bar.style.width = width), 200);
-        });
+  <!-- Footer -->
+  <footer class="footer">
+    <p>&copy; 2024 John Sylvester | <a href="https://www.linkedin.com/in/johnsylvesteribm/" target="_blank">LinkedIn</a></p>
+  </footer>
+
+  <script>
+    // Animate progress bars
+    document.addEventListener('DOMContentLoaded', () => {
+      const bars = document.querySelectorAll('.progress-bar span');
+      bars.forEach(bar => {
+        const width = bar.style.width;
+        setTimeout(() => (bar.style.width = width), 200);
       });
-    </script>
-  </body>
+    });
+  </script>
+</body>
 </html>
