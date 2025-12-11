@@ -591,7 +591,7 @@
                 <div class="section">
                     <h2 class="section-title"><i class="fas fa-certificate"></i> Certifications</h2>
                     
-                    <a href="#" class="credly-link" onclick="openCredly(event)">
+                    <a href="https://www.credly.com/users/johnsylvester" target="_blank" class="credly-link">
                         <i class="fas fa-award"></i>
                         <span>View All Badges on Credly (150+ Digital Badges)</span>
                         <i class="fas fa-external-link-alt"></i>
@@ -715,29 +715,6 @@
         </div>
     </div>
 
-    <!-- Credly Viewer Modal -->
-    <div id="credlyModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <div>
-                    <h2 style="margin: 0;"><i class="fas fa-award"></i> Credly Profile</h2>
-                </div>
-                <div class="pdf-controls">
-                    <a href="https://www.credly.com/users/johnsylvester" target="_blank" style="color: white; text-decoration: none;">
-                        <button><i class="fas fa-external-link-alt"></i> Open in New Tab</button>
-                    </a>
-                    <span class="close" onclick="closeCredly()">&times;</span>
-                </div>
-            </div>
-            <div id="iframe-container">
-                <div class="loading">
-                    <i class="fas fa-spinner"></i>
-                    <p>Loading Credly profile...</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <script>
         let pdfDoc = null;
         let scale = 1.5;
@@ -770,123 +747,12 @@
             document.getElementById('pdf-container').innerHTML = '';
         }
 
-        function openCredly(event) {
-            event.preventDefault();
-            const modal = document.getElementById('credlyModal');
-            const container = document.getElementById('iframe-container');
-            modal.style.display = 'block';
-            
-            // Create loading and iframe
-            container.innerHTML = `
-                <div class="loading" id="credlyLoading">
-                    <i class="fas fa-spinner"></i>
-                    <p>Loading Credly profile...</p>
-                    <p style="font-size: 0.9em; margin-top: 10px; color: #999;">If content doesn't load, please allow iframes or click "Open in New Tab"</p>
-                </div>
-                <iframe 
-                    class="web-viewer" 
-                    src="https://www.credly.com/users/johnsylvester"
-                    sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
-                    onload="document.getElementById('credlyLoading').classList.add('hidden')"
-                    onerror="handleCredlyError()">
-                </iframe>
-            `;
-            
-            // Hide loading after timeout as fallback
-            setTimeout(() => {
-                const loading = document.getElementById('credlyLoading');
-                if (loading) {
-                    loading.classList.add('hidden');
-                }
-            }, 5000);
-        }
-
-        function handleCredlyError() {
-            const container = document.getElementById('iframe-container');
-            container.innerHTML = `
-                <div class="loading">
-                    <i class="fas fa-exclamation-triangle" style="color: #f5576c;"></i>
-                    <p style="color: #f5576c;">Unable to load Credly profile in iframe</p>
-                    <p style="font-size: 0.9em; margin-top: 10px;">This may be due to browser security restrictions.</p>
-                    <a href="https://www.credly.com/users/johnsylvester" target="_blank" class="btn btn-primary" style="margin-top: 20px;">
-                        <i class="fas fa-external-link-alt"></i> Open in New Tab
-                    </a>
-                </div>
-            `;
-        }
-
-        function closeCredly() {
-            const modal = document.getElementById('credlyModal');
-            modal.style.display = 'none';
-            document.getElementById('iframe-container').innerHTML = `
-                <div class="loading">
-                    <i class="fas fa-spinner"></i>
-                    <p>Loading Credly profile...</p>
-                </div>
-            `;
-        }
-
-        function zoomIn() {
-            scale += 0.25;
-            renderAllPages();
-        }
-
-        function zoomOut() {
-            if (scale > 0.5) {
-                scale -= 0.25;
-                renderAllPages();
-            }
-        }
-
-        async function loadPDF() {
-            const container = document.getElementById('pdf-container');
-            container.innerHTML = '<p style="color: white; text-align: center; padding: 20px;">Loading PDF...</p>';
-
-            try {
-                pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
-                
-                pdfDoc = await pdfjsLib.getDocument('JohnSylvester_2024.pdf').promise;
-                renderAllPages();
-            } catch (error) {
-                container.innerHTML = '<p style="color: white; text-align: center; padding: 20px;">Error loading PDF. Please ensure JohnSylvester_2024.pdf is in the same directory.</p>';
-                console.error('Error loading PDF:', error);
-            }
-        }
-
-        async function renderAllPages() {
-            const container = document.getElementById('pdf-container');
-            container.innerHTML = '';
-
-            for (let pageNum = 1; pageNum <= pdfDoc.numPages; pageNum++) {
-                const page = await pdfDoc.getPage(pageNum);
-                const viewport = page.getViewport({ scale: scale });
-
-                const canvas = document.createElement('canvas');
-                canvas.className = 'pdf-page';
-                const context = canvas.getContext('2d');
-                canvas.height = viewport.height;
-                canvas.width = viewport.width;
-
-                container.appendChild(canvas);
-
-                await page.render({
-                    canvasContext: context,
-                    viewport: viewport
-                }).promise;
-            }
-        }
-
         // Close modal when clicking outside
         window.onclick = function(event) {
             const pdfModal = document.getElementById('pdfModal');
-            const credlyModal = document.getElementById('credlyModal');
             
             if (event.target === pdfModal) {
                 closePDF();
-            }
-            
-            if (event.target === credlyModal) {
-                closeCredly();
             }
         }
     </script>
