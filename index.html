@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>John Sylvester - Solution Architect</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 40px;
+            text-align: center;
+            color: white;
+        }
+
+        .header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .header p {
+            font-size: 1.3em;
+            opacity: 0.95;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(245, 87, 108, 0.4);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #667eea;
+        }
+
+        .btn-secondary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .content-wrapper {
+            display: grid;
+            grid-template-columns: 350px 1fr;
+            gap: 30px;
+            padding: 40px;
+        }
+
+        .sidebar {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px;
+            padding: 30px;
+            color: white;
+            height: fit-content;
+            position: sticky;
+            top: 20px;
+        }
+
+        .profile-img {
+            width: 100%;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            border: 5px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            font-size: 0.95em;
+        }
+
+        .contact-item i {
+            width: 35px;
+            height: 35px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+        }
+
+        .skill-item {
+            margin-bottom: 20px;
+        }
+
+        .skill-name {
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .skill-bar {
+            background: rgba(255, 255, 255, 0.2);
+            height: 25px;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .skill-progress {
+            background: linear-gradient(90deg, #f093fb 0%, #f5576c 100%);
+            height: 100%;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            transition: width 1s ease;
+        }
+
+        .main-content {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            font-size: 2em;
+            color: #667eea;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #f5576c;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .quote {
+            background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+            padding: 20px;
+            border-left: 5px solid #667eea;
+            border-radius: 10px;
+            font-style: italic;
+            margin-bottom: 30px;
+            color: #555;
+        }
+
+        .experience-item {
+            background: linear-gradient(135deg, #f093fb15 0%, #f5576c15 100%);
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            border-left: 5px solid #f5576c;
+        }
+
+        .experience-item h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .experience-item .date {
+            color: #f5576c;
+            font-weight: 600;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .cert-item {
+            background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+            transition: transform 0.3s ease;
+        }
+
+        .cert-item:hover {
+            transform: translateX(5px);
+        }
+
+        .cert-category {
+            color: #667eea;
+            font-weight: 600;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+
+        .collapse-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 10px 25px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .collapse-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .collapsed-content {
+            display: none;
+            margin-top: 20px;
+        }
+
+        .collapsed-content.show {
+            display: block;
+            animation: slideDown 0.3s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .pending {
+            color: #f5576c;
+        }
+
+        .link {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .link:hover {
+            color: #f5576c;
+        }
+
+        /* PDF Viewer Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+        }
+
+        .modal-content {
+            position: relative;
+            margin: 2% auto;
+            width: 90%;
+            height: 90%;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .modal-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .close {
+            color: white;
+            font-size: 35px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .close:hover {
+            transform: scale(1.2);
+        }
+
+        .pdf-controls {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .pdf-controls button {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .pdf-controls button:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        #pdf-container {
+            width: 100%;
+            height: calc(100% - 70px);
+            overflow: auto;
+            background: #525659;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .pdf-page {
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        @media (max-width: 968px) {
+            .content-wrapper {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                position: relative;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1><i class="fas fa-user-tie"></i> John Sylvester</h1>
+            <p>Solution / Technical Architect</p>
+            <div class="nav-buttons">
+                <button class="btn btn-primary" onclick="openPDF()">
+                    <i class="fas fa-file-pdf"></i> View Profile PDF
+                </button>
+                <a class="btn btn-secondary" href="JohnSylvester_2024.pdf" download>
+                    <i class="fas fa-download"></i> Download Profile
+                </a>
+            </div>
+        </div>
+
+        <div class="content-wrapper">
+            <div class="sidebar">
+                <img src="John_Mar2022_less.jpg" alt="John Sylvester" class="profile-img">
+                
+                <h3 style="margin-bottom: 20px;"><i class="fas fa-address-card"></i> Contact</h3>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Chennai, India</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>jajohnsylvester@gmail.com</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <span>8668056974</span>
+                </div>
+
+                <h3 style="margin: 30px 0 20px;"><i class="fas fa-code"></i> Skills</h3>
+                <div class="skill-item">
+                    <div class="skill-name">IBM Integration Suite</div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 90%">90%</div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">Cloud Platforms</div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 80%">80%</div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">GenAI Technologies</div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 75%">75%</div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">RedHat OpenShift</div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 50%">50%</div>
+                    </div>
+                </div>
+
+                <h3 style="margin: 30px 0 20px;"><i class="fas fa-language"></i> Languages</h3>
+                <div class="skill-item">
+                    <div class="skill-name">English</div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 100%">Fluent</div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">Tamil</div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 75%">Advanced</div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">French</div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 50%">Academic</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="main-content">
+                <div class="quote">
+                    "I envision the IT industry is built on 6 IT foundation pillars: a) Networking b) Operating System c) Database d) Programming e) Artificial Intelligence f) Software Engineering. I believe one who uses this methodology can understand any technology easily"
+                </div>
+
+                <div class="section">
+                    <h2 class="section-title"><i class="fas fa-briefcase"></i> Career Summary</h2>
+                    <p style="margin-bottom: 15px;">
+                        <a href="https://www.linkedin.com/in/johnsylvesteribm/" class="link" target="_blank">
+                            <i class="fab fa-linkedin"></i> linkedin.com/in/johnsylvesteribm
+                        </a>
+                    </p>
+                    <p style="margin-bottom: 10px; font-size: 1.1em;"><strong>21+ years</strong> of IT experience in IBM & multiple Technologies</p>
+                    <p style="margin-bottom: 8px;"><strong>Primary Skill:</strong> IBM MQ, IBM Integration Bus / IBM App Connect Enterprise</p>
+                    <p style="margin-bottom: 20px;"><strong>Secondary Skill:</strong> DevOps SME across clouds, IBM Cloud Paks, IBM Datapower Gateway, IBM API Connect, IBM BPM, Fico Blaze</p>
+                    <p style="margin-bottom: 8px;">✓ <strong>20+</strong> professional certifications across IBM, Azure, GCP, AWS, SAFe</p>
+                    <p style="margin-bottom: 8px;">✓ <strong>150+</strong> digital badges in the latest trends of the IT industry</p>
+                    <p>
+                        <a href="https://www.credly.com/users/johnsylvester" class="link" target="_blank">
+                            <i class="fas fa-award"></i> View Credly Badges
+                        </a>
+                    </p>
+                </div>
+
+                <div class="section">
+                    <h2 class="section-title"><i class="fas fa-laptop-code"></i> Work Experience</h2>
+                    
+                    <div class="experience-item">
+                        <h3>Solution Architect</h3>
+                        <p style="font-weight: 600; color: #764ba2;">Tata Consultancy Services</p>
+                        <p class="date"><i class="fas fa-calendar-alt"></i> Jul 2022 - Present</p>
+                        <p>Solution Architect for a leading Retail Pharmacy client using technologies: IBM MQ, IBM Datapower, Java Swing, WebSockets, Spring Boot, Oracle DB</p>
+                    </div>
+
+                    <div class="experience-item">
+                        <h3>Senior Architect</h3>
+                        <p style="font-weight: 600; color: #764ba2;">Cognizant</p>
+                        <p class="date"><i class="fas fa-calendar-alt"></i> Sep 2014 - Jun 2022</p>
+                        <p>Delivery Lead (Design, Development, Testing) for technologies: IIB, MQ, IBM BPM, Fico Blaze for a leading HealthCare client & DevOps SME for client</p>
+                    </div>
+
+                    <div class="experience-item">
+                        <h3>Technical Lead</h3>
+                        <p style="font-weight: 600; color: #764ba2;">Wipro</p>
+                        <p class="date"><i class="fas fa-calendar-alt"></i> Sep 2006 - Aug 2014</p>
+                        <p>Technical Lead for IBM Integration technologies: IBM MQ, IBM IIB for leading Retail, Utility clients</p>
+                    </div>
+
+                    <div class="experience-item">
+                        <h3>Developer</h3>
+                        <p style="font-weight: 600; color: #764ba2;">IBM</p>
+                        <p class="date"><i class="fas fa-calendar-alt"></i> Jul 2004 - Aug 2006</p>
+                        <p>Enhancement developer IBM Integration technology: IBM Interchange Server for a leading Energy client</p>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2 class="section-title"><i class="fas fa-certificate"></i> Certifications</h2>
+                    
+                    <div class="cert-category"><i class="fas fa-brain"></i> Gen AI Certifications</div>
+                    <div class="cert-grid">
+                        <div class="cert-item">Google Cloud Generative AI Leader</div>
+                        <div class="cert-item">Google - Intelligent Search Technical Expert Badge</div>
+                        <div class="cert-item">Google - Build with Vertex Technical Expert Badge</div>
+                    </div>
+
+                    <div class="cert-category" style="margin-top: 30px;"><i class="fab fa-google"></i> Google Cloud Platform (GCP)</div>
+                    <div class="cert-grid">
+                        <div class="cert-item">Cloud Digital Leader</div>
+                        <div class="cert-item">Associate Cloud Engineer</div>
+                        <div class="cert-item">Professional Cloud Developer</div>
+                        <div class="cert-item">Professional Cloud Security Engineer</div>
+                        <div class="cert-item">Professional Cloud Network Engineer</div>
+                        <div class="cert-item">Professional Cloud Architect</div>
+                    </div>
+
+                    <div class="cert-category" style="margin-top: 30px;"><i class="fab fa-microsoft"></i> Microsoft Azure</div>
+                    <div class="cert-grid">
+                        <div class="cert-item">AZ-900 - Azure Fundamentals</div>
+                        <div class="cert-item">AI-900 - Azure AI Fundamentals</div>
+                        <div class="cert-item">DP-900 - Azure Data Fundamentals</div>
+                        <div class="cert-item">SC-900 - Security & Compliance Fundamentals</div>
+                        <div class="cert-item">MS-900 - Microsoft 365 Fundamentals</div>
+                        <div class="cert-item pending">AZ-104 - Azure Administrator Associate *</div>
+                        <div class="cert-item pending">AI-102 - Azure AI Engineer Associate *</div>
+                        <div class="cert-item pending">SC-300 - Identity and Access Administrator *</div>
+                        <div class="cert-item pending">AZ-305 - Azure Solutions Architect Expert *</div>
+                        <div class="cert-item pending">AZ-400 - DevOps Engineer Expert *</div>
+                    </div>
+
+                    <div class="cert-category" style="margin-top: 30px;"><i class="fab fa-aws"></i> Amazon Web Services (AWS)</div>
+                    <div class="cert-grid">
+                        <div class="cert-item">CLF-C01: AWS Certified Cloud Practitioner</div>
+                        <div class="cert-item">SAA-C03: AWS Solutions Architect – Associate</div>
+                        <div class="cert-item">SOA-C02: AWS SysOps Administrator – Associate</div>
+                        <div class="cert-item">DOP-C01: AWS DevOps Engineer - Professional</div>
+                    </div>
+
+                    <div class="cert-category" style="margin-top: 30px;"><i class="fas fa-project-diagram"></i> SAFe®</div>
+                    <div class="cert-grid">
+                        <div class="cert-item">Certified SAFe® 6 Scrum Master</div>
+                        <div class="cert-item">Certified SAFe® 6 DevOps Practitioner</div>
+                        <div class="cert-item">Certified SAFe® 6 Product Owner/Product Manager</div>
+                        <div class="cert-item">Certified SAFe® 5 Scrum Master</div>
+                        <div class="cert-item">Certified SAFe® 5 DevOps Practitioner</div>
+                    </div>
+
+                    <div class="cert-category" style="margin-top: 30px;"><i class="fab fa-dev"></i> IBM</div>
+                    <div class="cert-grid">
+                        <div class="cert-item">C1000-130: IBM Certified Administrator – Cloud Pak for Integration V2021.2</div>
+                    </div>
+
+                    <p class="pending" style="margin-top: 20px;">* Renewal pending</p>
+
+                    <div style="margin-top: 30px;">
+                        <button class="collapse-btn" onclick="toggleRetired()">
+                            <i class="fas fa-archive"></i> View Retired Certifications
+                        </button>
+                        <div id="retired-certs" class="collapsed-content">
+                            <div class="cert-category" style="margin-top: 20px;"><i class="fab fa-dev"></i> IBM (Retired)</div>
+                            <div class="cert-grid">
+                                <div class="cert-item">C1000-093: Cloud Pak for Integration v2020.1</div>
+                                <div class="cert-item">WebSphere Message Broker V8.0</div>
+                                <div class="cert-item">SOA Solution Designer 2007</div>
+                                <div class="cert-item">WebSphere Datapower SOA Appliances</div>
+                                <div class="cert-item">WebSphere Message Broker V7.0</div>
+                                <div class="cert-item">WebSphere MQ V7.0 Administrator</div>
+                                <div class="cert-item">WebSphere MQ V7.0 Designer</div>
+                                <div class="cert-item">WebSphere MQ V6.0 Administrator</div>
+                                <div class="cert-item">WebSphere Message Broker V6.1</div>
+                                <div class="cert-item">C1000-083: IBM Cloud Foundations V2</div>
+                                <div class="cert-item">C1000-056: App Connect Enterprise V11</div>
+                            </div>
+                            <div class="cert-category" style="margin-top: 20px;"><i class="fab fa-microsoft"></i> Azure (Retired)</div>
+                            <div class="cert-grid">
+                                <div class="cert-item">AZ-303: Azure Architect Technologies</div>
+                                <div class="cert-item">AZ-304: Azure Architect Design</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2 class="section-title"><i class="fas fa-graduation-cap"></i> Education</h2>
+                    <div class="experience-item">
+                        <h3>M.Tech in Computer Science</h3>
+                        <p style="font-weight: 600; color: #764ba2;">Pondicherry Engineering College</p>
+                        <p class="date"><i class="fas fa-calendar-alt"></i> 2002 - 2004</p>
+                    </div>
+                    <div class="experience-item">
+                        <h3>B.Tech in Computer Science</h3>
+                        <p style="font-weight: 600; color: #764ba2;">Pondicherry Engineering College</p>
+                        <p class="date"><i class="fas fa-calendar-alt"></i> 1998 - 2002</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PDF Viewer Modal -->
+    <div id="pdfModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div>
+                    <h2 style="margin: 0;"><i class="fas fa-file-pdf"></i> Profile PDF</h2>
+                </div>
+                <div class="pdf-controls">
+                    <button onclick="zoomOut()"><i class="fas fa-search-minus"></i> Zoom Out</button>
+                    <button onclick="zoomIn()"><i class="fas fa-search-plus"></i> Zoom In</button>
+                    <span class="close" onclick="closePDF()">&times;</span>
+                </div>
+            </div>
+            <div id="pdf-container"></div>
+        </div>
+    </div>
+
+    <script>
+        let pdfDoc = null;
+        let scale = 1.5;
+
+        function toggleRetired() {
+            const content = document.getElementById('retired-certs');
+            content.classList.toggle('show');
+        }
+
+        function openPDF() {
+            const modal = document.getElementById('pdfModal');
+            modal.style.display = 'block';
+            loadPDF();
+        }
+
+        function closePDF() {
+            const modal = document.getElementById('pdfModal');
+            modal.style.display = 'none';
+            document.getElementById('pdf-container').innerHTML = '';
+        }
+
+        function zoomIn() {
+            scale += 0.25;
+            renderAllPages();
+        }
+
+        function zoomOut() {
+            if (scale > 0.5) {
+                scale -= 0.25;
+                renderAllPages();
+            }
+        }
+
+        async function loadPDF() {
+            const container = document.getElementById('pdf-container');
+            container.innerHTML = '<p style="color: white; text-align: center; padding: 20px;">Loading PDF...</p>';
+
+            try {
+                pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+                
+                pdfDoc = await pdfjsLib.getDocument('JohnSylvester_2024.pdf').promise;
+                renderAllPages();
+            } catch (error) {
+                container.innerHTML = '<p style="color: white; text-align: center; padding: 20px;">Error loading PDF. Please ensure JohnSylvester_2024.pdf is in the same directory.</p>';
+                console.error('Error loading PDF:', error);
+            }
+        }
+
+        async function renderAllPages() {
+            const container = document.getElementById('pdf-container');
+            container.innerHTML = '';
+
+            for (let pageNum = 1; pageNum <= pdfDoc.numPages; pageNum++) {
+                const page = await pdfDoc.getPage(pageNum);
+                const viewport = page.getViewport({ scale: scale });
+
+                const canvas = document.createElement('canvas');
+                canvas.className = 'pdf-page';
+                const context = canvas.getContext('2d');
+                canvas.height = viewport.height;
+                canvas.width = viewport.width;
+
+                container.appendChild(canvas);
+
+                await page.render({
+                    canvasContext: context,
+                    viewport: viewport
+                }).promise;
+            }
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('pdfModal');
+            if (event.target === modal) {
+                closePDF();
+            }
+        }
+    </script>
+</body>
+</html>
