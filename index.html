@@ -461,7 +461,7 @@
                 <button class="btn btn-primary" onclick="openPDF()">
                     <i class="fas fa-file-pdf"></i> View Profile PDF
                 </button>
-                <a class="btn btn-secondary" href="JohnSylvester_2024.pdf" download>
+                <a class="btn btn-secondary" href="JohnSylvester_2026.pdf" download>
                     <i class="fas fa-download"></i> Download Profile
                 </a>
             </div>
@@ -822,10 +822,10 @@
             try {
                 pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
                 
-                pdfDoc = await pdfjsLib.getDocument('JohnSylvester_2024.pdf').promise;
+                pdfDoc = await pdfjsLib.getDocument('JohnSylvester_2026.pdf').promise;
                 renderAllPages();
             } catch (error) {
-                container.innerHTML = '<p style="color: white; text-align: center; padding: 20px;">Error loading PDF. Please ensure JohnSylvester_2024.pdf is in the same directory.</p>';
+                container.innerHTML = '<p style="color: white; text-align: center; padding: 20px;">Error loading PDF. Please ensure JohnSylvester_2026.pdf is in the same directory.</p>';
                 console.error('Error loading PDF:', error);
             }
         }
