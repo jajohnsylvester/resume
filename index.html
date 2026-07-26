@@ -157,6 +157,15 @@
             color: #fff;
         }
 
+        .main-content .btn-secondary {
+            color: #1B2233;
+            border-color: #2A3348;
+        }
+        .main-content .btn-secondary:hover {
+            color: #1B2233;
+            border-color: var(--signal-2);
+        }
+
         /* ---------- LAYOUT ---------- */
         .content-wrapper {
             display: grid;
@@ -839,7 +848,7 @@
 
                     <p class="pending" style="margin-top: 20px;"><span class="star">*</span>Renewal pending</p>
 
-                    <div class="subsection-title"><i class="fas fa-laptop-code"></i> Personal Apps</div>
+                    <h2 class="section-title"><i class="fas fa-laptop-code"></i> Personal Apps</h2>
                     <a href="https://aistudio-ifo1.onrender.com/" target="_blank" class="apps-link">
                         <i class="fas fa-rocket"></i>
                         <span>Personal Apps</span>
@@ -877,17 +886,28 @@
 
                 <div class="section">
                     <h2 class="section-title"><i class="fas fa-link"></i> Useful Links</h2>
-                    <a href="#" onclick="openPDF('1706_03762v7.pdf', 'Attention Is All You Need'); return false;" class="apps-link">
-                        <i class="fas fa-file-pdf"></i>
-                        <span>Attention Is All You Need (PDF)</span>
-                        <i class="fas fa-external-link-alt"></i>
-                    </a>
-                    <a href="#" onclick="openPDF('2210_03629v3.pdf', 'ReAct: Synergizing Reasoning and Acting in Language Models'); return false;" class="apps-link" style="margin-left: 12px;">
-                        <i class="fas fa-file-pdf"></i>
-                        <span>ReAct: Synergizing Reasoning and Acting (PDF)</span>
-                        <i class="fas fa-external-link-alt"></i>
-                    </a>
-                    <a href="https://www.ibm.com/think/ai-agents#605511093" target="_blank" class="credly-link" style="margin-left: 12px;">
+
+                    <div class="subsection-title" style="margin-top: 0;">Attention Is All You Need</div>
+                    <div class="nav-buttons" style="justify-content: flex-start; margin-top: 0; margin-bottom: 26px;">
+                        <button class="btn btn-primary" onclick="openPDF('1706_03762v7.pdf', 'Attention Is All You Need')">
+                            <i class="fas fa-file-pdf"></i> View PDF
+                        </button>
+                        <a class="btn btn-secondary" href="1706_03762v7.pdf" download>
+                            <i class="fas fa-download"></i> Download
+                        </a>
+                    </div>
+
+                    <div class="subsection-title" style="margin-top: 0;">ReAct: Synergizing Reasoning and Acting in Language Models</div>
+                    <div class="nav-buttons" style="justify-content: flex-start; margin-top: 0; margin-bottom: 26px;">
+                        <button class="btn btn-primary" onclick="openPDF('2210_03629v3.pdf', 'ReAct: Synergizing Reasoning and Acting in Language Models')">
+                            <i class="fas fa-file-pdf"></i> View PDF
+                        </button>
+                        <a class="btn btn-secondary" href="2210_03629v3.pdf" download>
+                            <i class="fas fa-download"></i> Download
+                        </a>
+                    </div>
+
+                    <a href="https://www.ibm.com/think/ai-agents#605511093" target="_blank" class="credly-link">
                         <i class="fas fa-robot"></i>
                         <span>IBM: What Are AI Agents?</span>
                         <i class="fas fa-external-link-alt"></i>
