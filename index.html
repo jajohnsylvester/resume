@@ -1060,8 +1060,22 @@
                 pdfDoc = await pdfjsLib.getDocument(currentPdfPath).promise;
                 renderAllPages();
             } catch (error) {
-                container.innerHTML = '<p style="color: white; text-align: center; padding: 20px;">Error loading PDF. Please ensure ' + currentPdfPath + ' is in the same directory.</p>';
                 console.error('Error loading PDF:', error);
+                let hint = '';
+                if (window.location.protocol === 'file:') {
+                    hint = 'You are opening this page directly from your file system (file://). ' +
+                           'Most browsers block PDF loading this way for security reasons. ' +
+                           'Run a local server instead, e.g. from this folder: <code>python3 -m http.server</code> ' +
+                           'then open <code>http://localhost:8000</code>.';
+                } else {
+                    hint = 'Check that the filename and path are exactly correct, and that the file was not blocked (see browser console / network tab for a 404 or CORS error).';
+                }
+                container.innerHTML =
+                    '<div style="color: white; text-align: center; padding: 20px; max-width: 560px; margin: 0 auto;">' +
+                    '<p style="margin-bottom: 10px;">Error loading PDF. Please ensure <strong>' + currentPdfPath + '</strong> is in the same directory.</p>' +
+                    '<p style="font-size: 0.85em; color: #B7C0D6; margin-bottom: 10px;">' + hint + '</p>' +
+                    '<p style="font-size: 0.78em; color: #8C96AC; font-family: monospace;">' + (error && error.message ? error.message : error) + '</p>' +
+                    '</div>';
             }
         }
 
