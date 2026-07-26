@@ -876,6 +876,25 @@
                 </div>
 
                 <div class="section">
+                    <h2 class="section-title"><i class="fas fa-link"></i> Useful Links</h2>
+                    <a href="#" onclick="openPDF('1706_03762v7.pdf', 'Attention Is All You Need'); return false;" class="apps-link">
+                        <i class="fas fa-file-pdf"></i>
+                        <span>Attention Is All You Need (PDF)</span>
+                        <i class="fas fa-external-link-alt"></i>
+                    </a>
+                    <a href="#" onclick="openPDF('2210_03629v3.pdf', 'ReAct: Synergizing Reasoning and Acting in Language Models'); return false;" class="apps-link" style="margin-left: 12px;">
+                        <i class="fas fa-file-pdf"></i>
+                        <span>ReAct: Synergizing Reasoning and Acting (PDF)</span>
+                        <i class="fas fa-external-link-alt"></i>
+                    </a>
+                    <a href="https://www.ibm.com/think/ai-agents#605511093" target="_blank" class="credly-link" style="margin-left: 12px;">
+                        <i class="fas fa-robot"></i>
+                        <span>IBM: What Are AI Agents?</span>
+                        <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+
+                <div class="section">
                     <h2 class="section-title"><i class="fas fa-graduation-cap"></i> Education</h2>
                     <div class="timeline">
                         <div class="experience-item">
@@ -899,7 +918,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <div>
-                    <h2><i class="fas fa-file-pdf"></i> Profile PDF</h2>
+                    <h2><i class="fas fa-file-pdf"></i> <span id="pdfModalTitle">Profile PDF</span></h2>
                 </div>
                 <div class="pdf-controls">
                     <button onclick="zoomOut()"><i class="fas fa-search-minus"></i> Zoom Out</button>
@@ -925,6 +944,7 @@
     <script>
         let pdfDoc = null;
         let scale = 1.5;
+        let currentPdfPath = 'JohnSylvester_2026.pdf';
 
         function toggleRetired() {
             const content = document.getElementById('retired-certs');
@@ -942,7 +962,9 @@
             }
         }
 
-        function openPDF() {
+        function openPDF(path, title) {
+            currentPdfPath = path || 'JohnSylvester_2026.pdf';
+            document.getElementById('pdfModalTitle').textContent = title || 'Profile PDF';
             const modal = document.getElementById('pdfModal');
             modal.style.display = 'block';
             loadPDF();
@@ -1015,10 +1037,10 @@
 
             try {
                 pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
-                pdfDoc = await pdfjsLib.getDocument('JohnSylvester_2026.pdf').promise;
+                pdfDoc = await pdfjsLib.getDocument(currentPdfPath).promise;
                 renderAllPages();
             } catch (error) {
-                container.innerHTML = '<p style="color: white; text-align: center; padding: 20px;">Error loading PDF. Please ensure JohnSylvester_2026.pdf is in the same directory.</p>';
+                container.innerHTML = '<p style="color: white; text-align: center; padding: 20px;">Error loading PDF. Please ensure ' + currentPdfPath + ' is in the same directory.</p>';
                 console.error('Error loading PDF:', error);
             }
         }
