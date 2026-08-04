@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>John Sylvester - Solution Architect</title>
+    <meta name="description" content="John Sylvester — Solution / Technical Architect with 22+ years in IT integration and cloud. IBM MQ, App Connect Enterprise, GCP, Azure, AWS, GenAI.">
+    <meta property="og:title" content="John Sylvester - Solution Architect">
+    <meta property="og:description" content="22+ years in IT · Integration & Cloud · 350+ digital badges">
+    <meta property="og:type" content="profile">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230B0F19'/%3E%3Ctext x='32' y='42' font-family='Arial,sans-serif' font-weight='700' font-size='28' fill='%235FD9C6' text-anchor='middle'%3EJS%3C/text%3E%3C/svg%3E">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
@@ -24,12 +29,28 @@
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
+        html { scroll-behavior: smooth; }
+
         body {
             font-family: 'Inter', sans-serif;
             background: var(--ink);
             color: var(--text);
             min-height: 100vh;
             padding: 24px;
+        }
+
+        .section { scroll-margin-top: 84px; }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(16px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        .reveal.in-view { opacity: 1; transform: translateY(0); }
+
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            .reveal { opacity: 1; transform: none; transition: none; }
         }
 
         .container {
@@ -165,6 +186,61 @@
             color: #1B2233;
             border-color: var(--signal-2);
         }
+
+        /* ---------- SUB-NAV : sticky section jumper ---------- */
+        .subnav {
+            position: sticky;
+            top: 0;
+            z-index: 40;
+            display: flex;
+            gap: 4px;
+            overflow-x: auto;
+            padding: 0 40px;
+            background: rgba(11, 15, 25, 0.92);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--line);
+            scrollbar-width: none;
+        }
+        .subnav::-webkit-scrollbar { display: none; }
+
+        .subnav a {
+            flex-shrink: 0;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.76em;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--muted);
+            text-decoration: none;
+            padding: 14px 16px;
+            border-bottom: 2px solid transparent;
+            transition: color 0.2s ease, border-color 0.2s ease;
+        }
+        .subnav a:hover { color: var(--text); }
+        .subnav a.active { color: var(--signal); border-bottom-color: var(--signal); }
+
+        /* ---------- BACK TO TOP ---------- */
+        .to-top {
+            position: fixed;
+            right: 26px;
+            bottom: 26px;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--signal);
+            color: #062420;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: 0 8px 22px rgba(95, 217, 198, 0.32);
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(10px);
+            transition: opacity 0.25s ease, transform 0.25s ease;
+            z-index: 50;
+        }
+        .to-top.visible { opacity: 1; pointer-events: auto; transform: translateY(0); }
+        .to-top:hover { transform: translateY(-3px); }
 
         /* ---------- LAYOUT ---------- */
         .content-wrapper {
@@ -624,16 +700,30 @@
             .header h1 { font-size: 2.2em; }
             .main-content { padding: 32px 22px 44px; }
             .stat-grid { grid-template-columns: 1fr; }
+            .subnav { padding: 0 18px; }
+            .to-top { right: 16px; bottom: 16px; }
         }
 
         :focus-visible {
             outline: 2px solid var(--signal-2);
             outline-offset: 2px;
         }
+
+        @media print {
+            body { background: #fff; padding: 0; }
+            .container { border: none; border-radius: 0; }
+            .header { background: #0B0F19; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .flow-dot, .subnav, .to-top, .nav-buttons, .collapse-btn { display: none !important; }
+            .content-wrapper { grid-template-columns: 260px 1fr; }
+            .sidebar { position: static; }
+            .reveal { opacity: 1 !important; transform: none !important; }
+            .experience-item, .cert-item, .stat-card { break-inside: avoid; }
+            a[href]::after { content: ""; }
+        }
     </style>
 </head>
 <body>
-    <div class="container">
+    <div class="container" id="top">
         <div class="header">
             <div class="flow-line l1"></div>
             <div class="flow-line l2"></div>
@@ -654,6 +744,15 @@
                 </a>
             </div>
         </div>
+
+        <nav class="subnav" aria-label="Section navigation">
+            <a href="#summary">Summary</a>
+            <a href="#experience">Experience</a>
+            <a href="#certifications">Certifications</a>
+            <a href="#apps">Apps</a>
+            <a href="#links">Links</a>
+            <a href="#education">Education</a>
+        </nav>
 
         <div class="content-wrapper">
             <div class="sidebar">
@@ -711,7 +810,7 @@
                     I envision the IT industry is built on 6 IT foundation pillars: a) Networking b) Operating System c) Database d) Programming e) Artificial Intelligence f) Software Engineering. I believe one who uses this methodology can understand any technology easily.
                 </div>
 
-                <div class="section">
+                <div class="section reveal" id="summary">
                     <h2 class="section-title"><i class="fas fa-briefcase"></i> Career Summary</h2>
                     <p style="margin-bottom: 18px;">
                         <a href="https://www.linkedin.com/in/johnsylvesteribm/" class="link" target="_blank">
@@ -743,7 +842,7 @@
                     </p>
                 </div>
 
-                <div class="section">
+                <div class="section reveal" id="experience">
                     <h2 class="section-title"><i class="fas fa-laptop-code"></i> Work Experience</h2>
 
                     <div class="timeline">
@@ -777,7 +876,7 @@
                     </div>
                 </div>
 
-                <div class="section">
+                <div class="section reveal" id="certifications">
                     <h2 class="section-title"><i class="fas fa-certificate"></i> Certifications</h2>
 
                     <a href="https://www.credly.com/users/johnsylvester" target="_blank" class="credly-link">
@@ -786,7 +885,7 @@
                         <i class="fas fa-external-link-alt"></i>
                     </a>
 
-                    <div class="cert-category"><i class="fas fa-brain"></i> Gen AI Certifications</div>
+                    <div class="cert-category"><i class="fas fa-brain"></i> Gen AI & Agentic AI Certifications</div>
                     <div class="cert-grid">
                         <div class="cert-item">Gemini Enterprise Agent Development</div>
                         <div class="cert-item">Gemini Enterprise Deployment</div>
@@ -877,16 +976,16 @@
                     </div>
                 </div>
 
-                    
+                <div class="section reveal" id="apps">
                     <h2 class="section-title"><i class="fas fa-laptop-code"></i> Personal Apps</h2>
                     <a href="https://aistudio-ifo1.onrender.com/" target="_blank" class="apps-link">
                         <i class="fas fa-rocket"></i>
                         <span>Personal Apps</span>
                         <i class="fas fa-external-link-alt"></i>
                     </a>
+                </div>
 
-                    
-                <div class="section">
+                <div class="section reveal" id="links">
                     <h2 class="section-title"><i class="fas fa-link"></i> Useful Links</h2>
 
                     <div class="subsection-title" style="margin-top: 0;">Attention Is All You Need</div>
@@ -916,7 +1015,7 @@
                     </a>
                 </div>
 
-                <div class="section">
+                <div class="section reveal" id="education">
                     <h2 class="section-title"><i class="fas fa-graduation-cap"></i> Education</h2>
                     <div class="timeline">
                         <div class="experience-item">
@@ -934,6 +1033,10 @@
             </div>
         </div>
     </div>
+
+    <a href="#top" class="to-top" id="toTopBtn" aria-label="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </a>
 
     <!-- PDF Viewer Modal -->
     <div id="pdfModal" class="modal">
@@ -1108,6 +1211,54 @@
             if (event.target === pdfModal) { closePDF(); }
             if (event.target === credlyModal) { closeCredly(); }
         }
+
+        // ---- Reveal-on-scroll for sections ----
+        const revealEls = document.querySelectorAll('.reveal');
+        if ('IntersectionObserver' in window && revealEls.length) {
+            const revealObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('in-view');
+                        revealObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+            revealEls.forEach(el => revealObserver.observe(el));
+        } else {
+            revealEls.forEach(el => el.classList.add('in-view'));
+        }
+
+        // ---- Sub-nav scrollspy ----
+        const subnavLinks = Array.from(document.querySelectorAll('.subnav a'));
+        const spySections = subnavLinks
+            .map(link => document.querySelector(link.getAttribute('href')))
+            .filter(Boolean);
+
+        function updateSubnav() {
+            let currentId = spySections[0] ? spySections[0].id : null;
+            const probeLine = 140;
+            spySections.forEach(section => {
+                if (section.getBoundingClientRect().top - probeLine <= 0) {
+                    currentId = section.id;
+                }
+            });
+            subnavLinks.forEach(link => {
+                link.classList.toggle('active', link.getAttribute('href') === '#' + currentId);
+            });
+        }
+
+        // ---- Back-to-top visibility ----
+        const toTopBtn = document.getElementById('toTopBtn');
+        function updateToTop() {
+            toTopBtn.classList.toggle('visible', window.scrollY > 480);
+        }
+
+        window.addEventListener('scroll', () => {
+            updateSubnav();
+            updateToTop();
+        }, { passive: true });
+        updateSubnav();
+        updateToTop();
     </script>
 </body>
 </html>
