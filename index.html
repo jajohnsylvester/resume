@@ -524,6 +524,20 @@
             letter-spacing: 0.04em;
         }
 
+        .cert-issuer {
+            font-family: 'Inter', sans-serif;
+            color: #3A4256;
+            font-weight: 600;
+            font-size: 0.85em;
+            margin: 14px 0 0 2px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            letter-spacing: 0.02em;
+        }
+        .cert-issuer i { color: var(--signal-2); }
+        .cert-issuer + .cert-grid { margin-top: 8px; }
+
         .collapse-btn {
             background: #1B2233;
             color: #fff;
@@ -879,6 +893,18 @@
                 <div class="section reveal" id="certifications">
                     <h2 class="section-title"><i class="fas fa-certificate"></i> Certifications</h2>
 
+                    <div class="cert-category" style="margin-top: 6px;"><i class="fas fa-robot"></i> Gen AI, Agentic AI Badges</div>
+                    <a href="https://www.credential.net/profile/johnsylvestertech/wallet?_gl=1*1vplloj*_gcl_au*NTY5MzU2MTk2LjE3OTMxNTk5OTAuMTM0MjI2NDI3OS4xNzkzMTU5OTkyLjE3OTMxNjAwMzEuNjQxNDI2ODY2LjE3OTMxNTk5OTIuMTc5MzE2MDAzMQ..*_ga*MTAxMzk2Mzg0LjE3OTMxNTk5ODc.*_ga_FSDJZHHBH0*czE3OTMxNTk5ODYkbzEkZzEkdDE3OTMxNjAwNzEkajM1JGwwJGgxODAzMTIwNzI." target="_blank" class="credly-link" style="margin-top: 6px; margin-bottom: 14px;">
+                        <i class="fas fa-award"></i>
+                        <span>View Gen AI &amp; Agentic AI Badges</span>
+                        <i class="fas fa-external-link-alt"></i>
+                    </a>
+                    <div class="cert-grid">
+                        <div class="cert-item">OpenAI Foundational Knowledge</div>
+                        <div class="cert-item">OpenAI ChatGPT Solutions Practitioner</div>
+                    </div>
+
+                    <div style="margin-top: 30px;"></div>
                     <a href="https://www.credly.com/users/johnsylvester" target="_blank" class="credly-link">
                         <i class="fas fa-award"></i>
                         <span>View All Badges on Credly (350+ Digital Badges)</span>
@@ -886,12 +912,17 @@
                     </a>
 
                     <div class="cert-category"><i class="fas fa-brain"></i> Gen AI & Agentic AI Certifications</div>
+                    <div class="cert-issuer"><i class="fab fa-google"></i> Google</div>
                     <div class="cert-grid">
                         <div class="cert-item">Gemini Enterprise Agent Development</div>
                         <div class="cert-item">Gemini Enterprise Deployment</div>
                         <div class="cert-item">Google Cloud Generative AI Leader</div>
                         <div class="cert-item">Google - Intelligent Search Technical Expert Badge</div>
                         <div class="cert-item">Google - Build with Vertex Technical Expert Badge</div>
+                    </div>
+
+                    <div class="cert-issuer"><i class="fas fa-brain"></i> Anthropic</div>
+                    <div class="cert-grid">
                         <div class="cert-item">Claude Certified Associate - Foundations</div>
                         <div class="cert-item">Claude Certified Developer - Foundations</div>
                         <div class="cert-item">Claude Certified Architect - Foundations</div>
